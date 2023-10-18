@@ -1,0 +1,27 @@
+.header {
+    text-align: left;
+    animation: colorFlow 8s linear infinite alternate;
+    background: linear-gradient(to right, #e71b8b, #223661, #2cf7f7);
+    background-size: 50% 50%;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 24px;
+    font-family: cursive;
+}
+.divider {
+    background-color: darkslateblue;
+    width: 165vh;
+    height: 2px;
+    margin: 2px 0 0 0;
+    margin-top: 10px;
+}
+@keyframes colorFlow {
+    0% {
+        background-position: 0%;
+    }
+
+    100% {
+        background-position: 100%;
+    }
+}

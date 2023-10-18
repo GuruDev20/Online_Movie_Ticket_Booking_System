@@ -1,5 +1,5 @@
 .navbar {
-  background-color: goldenrod;
+  background-image: url('pic1.avif');
   color: white;
   padding-top: 5px;
   width: 14%;
@@ -29,7 +29,7 @@
   color: #fff;
 }
 .navbar a:hover {
-  color: black;
+  color: paleturquoise;
 }
 .content {
   margin-left: 16%; 
