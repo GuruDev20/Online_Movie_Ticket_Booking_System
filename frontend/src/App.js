@@ -3,7 +3,7 @@ import { Link, Element } from 'react-scroll';
 import './App.css';
 import Home from './components/Home/Home';
 import Upcomingmovies from './components/Upcmingmovies/Upcomingmovies'
-import Toprated from './components/TopRated/Toprated';
+import Available from './components/Available/Available';
 import Search from './components/Search/Search';
 import About from './components/About/About';
 import Contact from './components/Contact/Contact';
@@ -22,8 +22,8 @@ function App() {
     },
     {
       id: 3,
-      title: 'Top Rated',
-      component: <Toprated />,
+      title: 'Available',
+      component: <Available />,
     },
     {
       id: 4,

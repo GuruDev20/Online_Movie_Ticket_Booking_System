@@ -2,7 +2,7 @@
     display: flex;
 }
 nav {
-    background-color: goldenrod;
+    background-image: url('pic1.avif');
     color: white;
     padding: 10px;
     width: 16%;
@@ -29,7 +29,7 @@ a {
     color: white;
 }
 a:hover {
-    color: black;
+    color: lightseagreen;
 }
 main {
     margin-left: 34vh;
