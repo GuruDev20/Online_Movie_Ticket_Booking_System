@@ -1,0 +1,72 @@
+.contact {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 163.5vh;
+    height:93.4vh;
+    margin-top:10px;
+}
+
+.contact-field {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 24px;
+    font-family: cursive;
+}
+
+.divideer {
+    height: 2px;
+    background-color: #ccc;
+    margin: 20px 0;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding-left:40px;
+}
+
+.contact-info-field {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    font-family: cursive;
+}
+
+.contact-info-icon {
+    margin-right: 10px;
+    font-size: 24px;
+    color: rgb(31, 31, 59);
+}
+
+.contact-info-text {
+    text-align: left;
+    font-family: cursive;
+}
+
+.contact-info-text h3 {
+    font-size: 18px;
+    margin: 0;
+    font-family: cursive;
+}
+
+.contact-info-text p {
+    margin: 0;
+    font-family: cursive;
+}
+.card-img-field{
+    display:flex;
+    flex-direction:row;
+    padding: 10px;
+}
+.card-img{
+    padding: 10px;
+    width: 100vh;
+}
