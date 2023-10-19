@@ -7,7 +7,7 @@ function Contact() {
   return (
     <div className="contact">
       <div className="contact-field">
-        <h1>Contact Us</h1>
+        <h1 className='contact-us'>Contact Us</h1>
         <div className="divideer"></div>
         <div className="contact-info">
           <div className="contact-info-field">
