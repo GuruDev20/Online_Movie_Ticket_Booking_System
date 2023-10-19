@@ -35,3 +35,6 @@
   margin-left: 16%; 
   padding: 20px;
 }
+.smooth-scroll {
+  scroll-behavior: smooth;
+}

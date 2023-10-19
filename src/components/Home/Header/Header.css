@@ -2,12 +2,13 @@
     text-align: left;
     animation: colorFlow 8s linear infinite alternate;
     background: linear-gradient(to right, #e71b8b, #223661, #2cf7f7);
-    background-size: 50% 50%;
+    background-size: 50% 1000%;
     text-fill-color: transparent;
     -webkit-background-clip: text;
     color: transparent;
     font-size: 24px;
     font-family: cursive;
+    padding-left: 10px;
 }
 .divider {
     background-color: darkslateblue;
