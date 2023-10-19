@@ -4,7 +4,7 @@ import pic1 from "./pic1.avif";
 
 function Upcomingmovies() {
   return (
-    <div className="card-container">
+    <div className="card-container-movies">
       <div className="card-header">
         <h2>Upcoming Movies</h2>
       </div>
@@ -35,6 +35,7 @@ function Upcomingmovies() {
           <div className="divider-rating1"></div>
           <div className="divider-rating2"></div>
           <div className="divider-rating3"></div>
+          <div className="stars"><h1>⭐⭐⭐⭐⭐⭐</h1></div>
         </div>
         <div className="card-ratings">
           <div className="card">

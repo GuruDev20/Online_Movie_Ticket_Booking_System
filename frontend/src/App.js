@@ -5,9 +5,8 @@ import Home from './components/Home/Home';
 import Upcomingmovies from './components/Upcmingmovies/Upcomingmovies'
 import Available from './components/Available/Available';
 import Search from './components/Search/Search';
-import About from './components/About/About';
 import Contact from './components/Contact/Contact';
-
+import Account from './components/profile/profile';
 function App() {
   const menuItems = [
     {
@@ -32,13 +31,13 @@ function App() {
     },
     {
       id: 5,
-      title: 'About',
-      component: <About />,
+      title: 'Contact',
+      component: <Contact />,
     },
     {
       id: 6,
-      title: 'Contact',
-      component: <Contact />,
+      title: 'Account',
+      component: <Account />,
     },
   ];
 
@@ -49,7 +48,7 @@ function App() {
           <ul>
             {menuItems.map((menu) => (
               <li key={menu.id}>
-                <Link to={menu.title} smooth={true} duration={500}>
+                <Link to={menu.title} smooth={true} duration={700}>
                   {menu.title}
                 </Link>
               </li>
