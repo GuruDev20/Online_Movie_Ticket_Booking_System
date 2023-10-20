@@ -5,6 +5,7 @@
     text-align: center;
     padding: 10vh 40vh;
     margin-left: 30px;
+    user-select: none;
 }
 
 .user-image {

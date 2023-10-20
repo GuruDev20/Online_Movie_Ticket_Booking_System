@@ -8,6 +8,7 @@ nav {
     width: 16%;
     height: 96vh;
     position: fixed;
+    user-select: none;
 }
 ul {
     list-style: none;

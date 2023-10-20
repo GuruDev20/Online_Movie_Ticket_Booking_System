@@ -1,5 +1,6 @@
 .available {
     margin: 10px;
+    user-select: none;
 }
 
 .available-fields {
@@ -59,6 +60,7 @@
     transition: bottom 0.3s ease-in-out;
     border-radius: 10px;
     transform: translateY(150%);
+    user-select: none;
 }
 
 .card-container:hover .card-button {

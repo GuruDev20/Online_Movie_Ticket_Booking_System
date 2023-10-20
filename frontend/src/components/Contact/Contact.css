@@ -4,6 +4,7 @@
     width: 163.5vh;
     height:93.4vh;
     margin-top:10px;
+    user-select: none;
 }
 
 .contact-field {
