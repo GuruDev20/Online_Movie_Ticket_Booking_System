@@ -2,7 +2,10 @@ import React from 'react';
 import './Contact.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone, faMapMarker } from '@fortawesome/free-solid-svg-icons';
-import pic1 from "./pic1.avif";
+import kannum from '../../assets/kannum.jpg'
+import vikram from '../../assets/vikram.jpg'
+import leo from '../../assets/leo.jpg'
+import endgame from '../../assets/endgame.jpg'
 function Contact() {
   return (
     <div className="contact">
@@ -41,16 +44,16 @@ function Contact() {
       </div>
       <div className="card-img-field">
           <div className="card-img">
-            <img src={pic1} alt="Movie 1" className="card-image" />
+            <img src={kannum} alt="Movie 1" className="card-image" />
           </div>
           <div className="card-img">
-            <img src={pic1} alt="Movie 2" className="card-image" />
+            <img src={vikram} alt="Movie 2" className="card-image" />
           </div>
           <div className="card-img">
-            <img src={pic1} alt="Movie 1" className="card-image" />
+            <img src={leo} alt="Movie 1" className="card-image" />
           </div>
           <div className="card-img">
-            <img src={pic1} alt="Movie 2" className="card-image" />
+            <img src={endgame} alt="Movie 2" className="card-image" />
           </div>
       </div>
     </div>

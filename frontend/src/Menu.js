@@ -2,11 +2,13 @@ import React from 'react';
 import { Link, Element } from 'react-scroll';
 import './Menu.css';
 import Home from './components/Home/Home';
-import Upcomingmovies from './components/Upcmingmovies/Upcomingmovies'
+import Upcomingmovies from './components/Upcmingmovies/Upcomingmovies';
 import Available from './components/Available/Available';
 import Contact from './components/Contact/Contact';
 import Account from './components/profile/profile';
-function Menu() {
+
+function Menu(props) {
+  const { email } = props;
   const menuItems = [
     {
       id: 1,
@@ -31,7 +33,7 @@ function Menu() {
     {
       id: 5,
       title: 'Account',
-      component: <Account />,
+      component: <Account email={email} />,
     },
   ];
 

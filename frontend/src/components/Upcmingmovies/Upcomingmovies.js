@@ -1,7 +1,13 @@
 import React from "react";
 import "./Upcoming.css";
-import pic1 from "./pic1.avif";
-
+import leo from '../../assets/leo.jpg'
+import endgame from '../../assets/endgame.jpg'
+import paathan from '../../assets/athaan.jpg'
+import ironman from '../../assets/ironman.jpg'
+import loki from '../../assets/loki.jpg'
+import panther from '../../assets/panther.jpg'
+import kaithi from '../../assets/kaithi2.jpg'
+import pacificrim from '../../assets/pacificrim.jpg'
 function Upcomingmovies() {
   return (
     <div className="card-container-movies">
@@ -11,22 +17,22 @@ function Upcomingmovies() {
       <div className="divider"></div>
       <div className="card-content">
         <div className="card">
-          <img src={pic1} alt="Movie 1" className="card-image" />
+          <img src={leo} alt="Movie 1" className="card-image" />
         </div>
         <div className="card">
-          <img src={pic1} alt="Movie 2" className="card-image" />
+          <img src={endgame} alt="Movie 2" className="card-image" />
         </div>
         <div className="card">
-          <img src={pic1} alt="Movie 3" className="card-image" />
+          <img src={paathan} alt="Movie 3" className="card-image" />
         </div>
         <div className="card">
-          <img src={pic1} alt="Movie 4" className="card-image" />
+          <img src={ironman} alt="Movie 4" className="card-image" />
         </div>
         <div className="card">
-          <img src={pic1} alt="Movie 5" className="card-image" />
+          <img src={loki} alt="Movie 5" className="card-image" />
         </div>
         <div className="card">
-          <img src={pic1} alt="Movie 6" className="card-image" />
+          <img src={panther} alt="Movie 6" className="card-image" />
         </div>
       </div>
       <div className="toprated">
@@ -39,10 +45,10 @@ function Upcomingmovies() {
         </div>
         <div className="card-ratings">
           <div className="card">
-            <img src={pic1} alt="Movie 1" className="card-image" />
+            <img src={kaithi} alt="Movie 1" className="card-image" />
           </div>
           <div className="card">
-            <img src={pic1} alt="Movie 2" className="card-image" />
+            <img src={pacificrim} alt="Movie 2" className="card-image" />
           </div>
         </div>
       </div>

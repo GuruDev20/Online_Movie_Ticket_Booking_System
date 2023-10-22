@@ -35,7 +35,6 @@ function App() {
         .then(result => {
             console.log(result);
             setRedirectToMenu(true);
-          
         })
         .catch(err => console.log(err));
     } else {
@@ -55,9 +54,7 @@ function App() {
     <Router>
       <div className="app-container">
         <Switch>
-          <Route path="/menu">
-            <Menu />
-          </Route>
+          <Route path="/menu" render={() => <Menu email={email} />} />
           <Route exact path="/">
             <div className={isRegistering ? "login-form left-hidden" : "login-form left"}>
               <div className="loginfrom">

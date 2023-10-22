@@ -1,14 +1,17 @@
 import React from 'react';
 import ImageSlider from "./ImageSlider";
-import pic1 from './pic1.avif'
-import pic2 from './pic2.jpg'
+import leo from '../../../assets/leohorizontal.jpg'
+import whitehouse from '../../../assets/whithouse.jpg';
+import salaar from '../../../assets/salaar.jpg'
+import shawshank from '../../../assets/shawshank.jpg'
+import kaithi from '../../../assets/kaithi.jpg'
 const Carousel = () => {
   const slides = [
-    { url: pic1, title: "beach" },
-    { url: pic2, title: "boat" },
-    { url: pic1, title: "forest" },
-    { url: pic2, title: "city" },
-    { url: pic1, title: "italy" },
+    { url: leo, title: "beach" },
+    { url: whitehouse, title: "boat" },
+    { url: salaar, title: "forest" },
+    { url: shawshank, title: "city" },
+    { url: kaithi, title: "italy" },
   ];
   const containerStyles = {
     width: "1450px",
