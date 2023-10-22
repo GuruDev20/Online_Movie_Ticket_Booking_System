@@ -3,7 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Menu from './Menu';
 import axios from "axios";
-
+import Process from "./components/process";
 function App() {
   const [isRegistering, setIsRegistering] = useState(false);
   const [email, setEmail] = useState("");
@@ -55,6 +55,7 @@ function App() {
       <div className="app-container">
         <Switch>
           <Route path="/menu" render={() => <Menu email={email} />} />
+          <Route path="/process/:amount/:moviename/:timing/:quality/:screen/:language/:email" component={Process} />
           <Route exact path="/">
             <div className={isRegistering ? "login-form left-hidden" : "login-form left"}>
               <div className="loginfrom">
@@ -123,3 +124,4 @@ function App() {
 }
 
 export default App;
+

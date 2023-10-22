@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const UserModel = require('./models/User');
+const TicketModel = require('./models/Ticket');
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -54,6 +55,13 @@ app.post('/register', (req, res) => {
     });
 });
 
+app.post('/saveTickets', (req, res) => {
+    TicketModel.create(req.body)
+    .then(ticket => {
+        res.json(ticket);
+      })
+    .catch(err => console.log(err));
+});
 app.listen(3001, () => {
   console.log('Server is running on port 3001');
 });

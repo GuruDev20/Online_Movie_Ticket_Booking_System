@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./profile.css";
 import pic1 from "./pic1.avif";
 import axios from "axios";
-
 function Account(props) {
   const { email } = props;
   const [users, setUsers] = useState([]);

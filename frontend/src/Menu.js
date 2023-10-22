@@ -23,7 +23,7 @@ function Menu(props) {
     {
       id: 3,
       title: 'Available',
-      component: <Available />,
+      component: <Available email={email} />,
     },
     {
       id: 4,
@@ -66,3 +66,4 @@ function Menu(props) {
 }
 
 export default Menu;
+
