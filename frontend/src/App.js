@@ -1,65 +1,127 @@
-import React from 'react';
-import { Link, Element } from 'react-scroll';
-import './App.css';
-import Home from './components/Home/Home';
-import Upcomingmovies from './components/Upcmingmovies/Upcomingmovies'
-import Available from './components/Available/Available';
-import Contact from './components/Contact/Contact';
-import Account from './components/profile/profile';
+import React, { useState } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import Menu from './Menu';
+import axios from "axios";
+
 function App() {
-  const menuItems = [
-    {
-      id: 1,
-      title: 'Home',
-      component: <Home />,
-    },
-    {
-      id: 2,
-      title: 'Upcoming Movies',
-      component: <Upcomingmovies />,
-    },
-    {
-      id: 3,
-      title: 'Available',
-      component: <Available />,
-    },
-    {
-      id: 4,
-      title: 'Contact',
-      component: <Contact />,
-    },
-    {
-      id: 5,
-      title: 'Account',
-      component: <Account />,
-    },
-  ];
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [redirectToMenu, setRedirectToMenu] = useState(false);
+
+  const handleToggleForm = () => {
+    setIsRegistering(!isRegistering);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isRegistering) {
+      console.log("Registering with Username:", username, "Email:", email, "Password:", password);
+      axios.post('http://localhost:3001/register', { email, password, username })
+        .then(result => {
+            console.log(result);
+            setRedirectToMenu(true);
+          
+        })
+        .catch(err => console.log(err));
+    } else {
+      console.log("Logging in with Email:", email, "Password:", password);
+      axios.post('http://localhost:3001/login', { email, password })
+        .then(result => {
+          console.log(result);
+          if (result.data === "Success"){
+            setRedirectToMenu(true);
+          }
+        })
+        .catch(err => console.log(err));
+    }
+  };
 
   return (
-    <div className="App">
-      <header>
-        <nav>
-          <ul>
-            {menuItems.map((menu) => (
-              <li key={menu.id}>
-                <Link to={menu.title} smooth={true} duration={700}>
-                  {menu.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </header>
-      <main>
-        {menuItems.map((menu) => (
-          <div className="content" key={menu.id}>
-            <Element name={menu.title} className="content-section">
-              {menu.component}
-            </Element>
-          </div>
-        ))}
-      </main>
-    </div>
+    <Router>
+      <div className="app-container">
+        <Switch>
+          <Route path="/menu">
+            <Menu />
+          </Route>
+          <Route exact path="/">
+            <div className={isRegistering ? "login-form left-hidden" : "login-form left"}>
+              <div className="loginfrom">
+                <h2>Login</h2>
+                <form onSubmit={handleSubmit}>
+                  <label>
+                    Email:
+                    <input type="email" value={email} onChange={handleEmailChange} />
+                  </label>
+                  <label>
+                    Password:
+                    <input
+                      type="password"
+                      value={password}
+                      onChange={handlePasswordChange}
+                    />
+                  </label>
+                  <button type="submit">Login</button>
+                </form>
+                <p>
+                  Don't have an account?{" "}
+                  <span onClick={handleToggleForm}>Register</span>
+                </p>
+              </div>
+            </div>
+            <div className="image">
+              {/* <img src={pic1} alt="BG" /> */}
+            </div>
+            <div className={isRegistering ? "register-form right" : "register-form right-hidden"}>
+              <div className="registerfrom">
+                <h2>Register</h2>
+                <form onSubmit={handleSubmit}>
+                  <label>
+                    Username:
+                    <input
+                      type="text"
+                      value={username}
+                      onChange={handleUsernameChange}
+                    />
+                  </label>
+                  <label>
+                    Email:
+                    <input type="email" value={email} onChange={handleEmailChange} />
+                  </label>
+                  <label>
+                    Password:
+                    <input
+                      type="password"
+                      value={password}
+                      onChange={handlePasswordChange}
+                    />
+                  </label>
+                  <button type="submit">Register</button>
+                </form>
+                <p>
+                  Already have an account? <span onClick={handleToggleForm}>Login</span>
+                </p>
+              </div>
+            </div>
+          </Route>
+        </Switch>
+      </div>
+      {redirectToMenu && <Redirect to="/menu" />}
+    </Router>
   );
 }
 

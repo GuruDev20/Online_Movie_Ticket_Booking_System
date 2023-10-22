@@ -1,54 +1,126 @@
-.App {
+.app-container {
+    background-image: url('./pic1.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     display: flex;
+    height: 98vh;
 }
-nav {
-    background-image: url('pic1.avif');
-    color: white;
-    padding: 10px;
-    width: 16%;
-    height: 96vh;
-    position: fixed;
-    user-select: none;
-}
-ul {
-    list-style: none;
+.login-form,
+.register-form {
+    width: 24%;
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.5s;
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+.left {
+    margin-right: 5%;
+}
+
+.right {
+    margin-left: 5%;
+}
+.login-form.left-hidden,
+.register-form.right-hidden {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+.image {
+    width: 60%;
+}
+.login-form h2,
+.register-form h2 {
     margin: 0;
-    padding-top: 23vh;
-    line-height: 4.5vh;
+    padding: 10px;
 }
-li {
-    padding: 5px;
+form {
+    display: flex;
+    flex-direction: column;
+}
+label {
+    margin: 10px 0;
+}
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0074d9;
+    color: white;
     cursor: pointer;
-    font-size: 18px;
-    list-style: none;
-    color: white;
-}
-a {
-    text-decoration: none;
-    color: white;
-}
-a:hover {
-    color: lightseagreen;
-}
-main {
-    margin-left: 34vh;
-    width: 170vh;
-    padding-left: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    margin-top: 20px;
+    width: 50%;
+    align-self: center;
 }
 
-.content {
+button:hover {
+    background-color: #0056b3;
+}
+.loginfrom {
+    background-color: #ccc;
+    width: 90%;
+    padding: 20px;
+    margin-top: 250px;
+    border-radius: 20px;
     display: flex;
-    width: 170vh;
-    height: 100vh;
-    margin-left: 10px;
-    margin-bottom: 10px;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+.registerfrom{
+    background-color: #ccc;
+    width: 90%;
+    padding: 20px;
+    margin-top: 220px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+.loginfrom label {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 10px 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    cursor: pointer;
 }
 
-.content-header {
-    color: white;
+.loginfrom input {
+    width: 94%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 15px;
+    margin-top: 10px;
+}
+.registerfrom input[type="text"] {
+    width: 91%;
+    font-size: 15px;
+}
+.registerfrom label{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 10px 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    cursor: pointer;
+}
+.registerfrom input {
+    width: 94%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid white;
+    outline: none;
+    font-size: 15px;
+    margin-top: 10px;
 }
