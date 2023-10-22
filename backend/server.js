@@ -1,12 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const dotenv=require('dotenv');
 const UserModel = require('./models/User');
 const TicketModel = require('./models/Ticket');
 const app = express();
 app.use(express.json());
 app.use(cors());
-
+const paymentRoutes=require('./models/payment')
+dotenv.config();
 mongoose.connect('mongodb://127.0.0.1:27017/Online_Movie_Ticket_Booking_System');
 
 app.post('/login', (req, res) => {
@@ -62,6 +64,9 @@ app.post('/saveTickets', (req, res) => {
       })
     .catch(err => console.log(err));
 });
+
+app.use("/payment/",paymentRoutes);
+
 app.listen(3001, () => {
   console.log('Server is running on port 3001');
 });
