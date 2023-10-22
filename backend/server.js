@@ -36,6 +36,14 @@ app.get('/getUsers', (req, res) => {
       .catch(err => res.json(err));
   });
   
+app.get('/getTickets', (req, res) => {
+  const { email } = req.query;
+  TicketModel.find({email})
+  .then(tickets => {
+      res.json(tickets);
+    })
+    .catch(err=>res.json(err))
+})
 app.post('/register', (req, res) => {
   const { email } = req.body;
   UserModel.findOne({ email: email })

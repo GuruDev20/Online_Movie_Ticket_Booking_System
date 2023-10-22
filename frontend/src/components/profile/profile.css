@@ -34,17 +34,18 @@ input[type='text'] {
     font-size: 18px;
     border: 1px solid white;
     border-radius: 5px;
-    display:flex;
-    justify-content:center;
-    flex-direction:row;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
     padding-left: 20px;
 }
-.label{
+
+.label {
     font-weight: bold;
     font-size: 21px;
-    display:flex;
-    justify-content:start;
-    flex-direction:row;
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
 }
 
 .edit button {
@@ -67,9 +68,31 @@ input[type='text'] {
     height: 2px;
     margin-top: 20px;
 }
+
 .divider-field {
     background-color: rgb(236, 234, 234);
     width: 65vh;
     height: 2px;
     margin-top: 20px;
+}
+
+.ticket-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.ticket-table th,
+.ticket-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.ticket-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+.ticket-table tr:hover {
+    background-color: #f5f5f5;
 }
