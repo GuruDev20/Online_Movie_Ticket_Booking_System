@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import './process.css'
 import axios from "axios";
-
+import {Link} from 'react-router-dom'
 function Process() {
   const { amount, moviename, timing, quality, screen, language,email } = useParams();
   const [ticketCount, setTicketCount] = useState(1);
@@ -46,8 +46,10 @@ function Process() {
     axios.post('http://localhost:3001/saveTickets',{moviename, timing, quality, screen, language,ticketCount,email})
     .then(result => {
         console.log(result);
+        <Link to="/menu"/>
       })
     .catch(err => console.log(err));
+    
   };
   return (
     <div className="process">

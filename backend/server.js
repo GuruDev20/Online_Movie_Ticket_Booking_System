@@ -4,9 +4,13 @@ const cors = require('cors');
 const dotenv=require('dotenv');
 const UserModel = require('./models/User');
 const TicketModel = require('./models/Ticket');
+const multer = require('multer');
 const app = express();
+const path=require('path');
 app.use(express.json());
 app.use(cors());
+app.use(express.static('public'))
+const MovieModel= require('./models/Movie')
 const paymentRoutes=require('./models/payment')
 dotenv.config();
 mongoose.connect('mongodb://127.0.0.1:27017/Online_Movie_Ticket_Booking_System');
@@ -74,6 +78,48 @@ app.post('/saveTickets', (req, res) => {
 });
 
 app.use("/payment/",paymentRoutes);
+app.get('/Tickets', (req, res) => {
+  const { screen } = req.query;
+  TicketModel.find({ screen })
+    .then(tickets => {
+      res.json(tickets);
+    })
+    .catch(err => res.json(err));
+});
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/Images');
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + '_' + Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage: storage });
+
+app.post('/upload', upload.single('image'), (req, res) => {
+  const { movieName, timing, screen, language, quality, amount } = req.body;
+
+  MovieModel.create({
+    image: req.file.filename,
+    movieName,
+    timing,
+    screen,
+    language,
+    quality,
+    amount,
+  })
+    .then((result) => res.json(result))
+    .catch((err) => console.log(err));
+});
+
+app.get('/getImage', (req, res) => {
+  MovieModel.find()
+    .then((movies) => res.json(movies))
+    .catch((err) => res.json(err));
+});
+
 
 app.listen(3001, () => {
   console.log('Server is running on port 3001');

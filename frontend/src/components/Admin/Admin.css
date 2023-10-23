@@ -1,0 +1,47 @@
+.admin-container {
+    text-align: center;
+    margin-left: 50vh;
+}
+
+.admin-header {
+    font-size: 36px;
+}
+
+.adminnav {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.adminnav button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin: 0 10px;
+    width: 30vh;
+}
+
+.table-container {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Add more styles as needed */

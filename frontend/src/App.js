@@ -4,13 +4,14 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import Menu from './Menu';
 import axios from "axios";
 import Process from "./components/process";
+import Admin from './components/Admin/Admin'
 function App() {
   const [isRegistering, setIsRegistering] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [redirectToMenu, setRedirectToMenu] = useState(false);
-
+  const [redirectToAdmin, setRedirectToAdmin] = useState(false);
   const handleToggleForm = () => {
     setIsRegistering(!isRegistering);
   };
@@ -33,8 +34,8 @@ function App() {
       console.log("Registering with Username:", username, "Email:", email, "Password:", password);
       axios.post('http://localhost:3001/register', { email, password, username })
         .then(result => {
-            console.log(result);
-            setRedirectToMenu(true);
+          console.log(result);
+          setRedirectToMenu(true);
         })
         .catch(err => console.log(err));
     } else {
@@ -42,20 +43,26 @@ function App() {
       axios.post('http://localhost:3001/login', { email, password })
         .then(result => {
           console.log(result);
-          if (result.data === "Success"){
-            setRedirectToMenu(true);
+          if (result.data === "Success") {
+            if (email === "admin2003@gmail.com" && password === "admin2003") {
+              setRedirectToAdmin(true);
+            } else {
+              setRedirectToMenu(true);
+            }
           }
         })
         .catch(err => console.log(err));
     }
   };
-
+  
   return (
     <Router>
       <div className="app-container">
         <Switch>
           <Route path="/menu" render={() => <Menu email={email} />} />
           <Route path="/process/:amount/:moviename/:timing/:quality/:screen/:language/:email" component={Process} />
+          <Route path="/account"/>
+          <Route path="/admin" render={() => <Admin email={email} />} />
           <Route exact path="/">
             <div className={isRegistering ? "login-form left-hidden" : "login-form left"}>
               <div className="loginfrom">
@@ -119,6 +126,8 @@ function App() {
         </Switch>
       </div>
       {redirectToMenu && <Redirect to="/menu" />}
+      {redirectToAdmin && <Redirect to="/admin" />}
+
     </Router>
   );
 }
