@@ -27,7 +27,7 @@ function Available(props) {
         {movies.map((movie, index) => (
           <div className="card-content-field" key={index}>
             <div className="card-container">
-              <img src={movie.image} alt={`Movie ${index + 1}`} className="card-image-field" />
+              <img src={`http://localhost:3001/Images/`+movie.image} alt={`Movie ${index + 1}`} className="card-image-field" />
               <Link
                 to={`/process/${movie.amount}/${movie.movieName}/${movie.timing}/${movie.quality}/${movie.screen}/${movie.language}/${email}`}
                 className="card-button"
