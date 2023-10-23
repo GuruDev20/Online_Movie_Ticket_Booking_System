@@ -57,7 +57,7 @@ function App() {
   
   return (
     <Router>
-      <div className="app-container">
+      <div className="appdetails">
         <Switch>
           <Route path="/menu" render={() => <Menu email={email} />} />
           <Route path="/process/:amount/:moviename/:timing/:quality/:screen/:language/:email" component={Process} />
