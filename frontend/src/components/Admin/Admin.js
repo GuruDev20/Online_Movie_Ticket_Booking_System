@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Admin.css';
 import axios from 'axios';
 
+
 export default function Admin() {
   const [activeScreen, setActiveScreen] = useState(null);
   const [ticketData, setTicketData] = useState(null);
@@ -17,7 +18,6 @@ export default function Admin() {
   });
 
   const fileInputRef = useRef(null);
-
   const fetchTicketDetails = async (screen) => {
     axios
       .get('http://localhost:3001/Tickets', {
@@ -113,6 +113,9 @@ export default function Admin() {
           {imageData.map((image, index) => (
             <ImageCard key={index} imageUrl={image.url} />
           ))}
+        </div>
+        <div className='available'>
+          
         </div>
       </div>
     </div>
@@ -212,7 +215,9 @@ function TableComponent({ screen, ticketData }) {
 function ImageCard({ imageUrl }) {
   return (
     <div className="image-card">
-      <img src={imageUrl} alt="Movie" />
+      <div className="image-card-inner">
+        <img src={imageUrl} alt="Movie" />
+      </div>
     </div>
   );
 }

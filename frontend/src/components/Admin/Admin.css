@@ -1,6 +1,7 @@
 .admin-container {
     text-align: center;
     margin-left: 50vh;
+    background-color: white;
 }
 
 .admin-header {
@@ -43,5 +44,3 @@ th {
     background-color: #4CAF50;
     color: white;
 }
-
-/* Add more styles as needed */

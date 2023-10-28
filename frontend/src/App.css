@@ -1,22 +1,22 @@
 .appdetails {
-    background-image: url('./pic1.avif');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-color: rgb(250, 225, 244);
     display: flex;
     height: 98vh;
     user-select: none;
 }
 .login-form,
 .register-form {
-    width: 24%;
-    background-color: #f0f0f0;
-    padding: 20px;
+    background-image: url('./pic1.avif');
+    width: 29%;
+    background-color: lightgray;
+    padding: 50px;
     text-align: center;
     transition: all 0.5s;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-left: 10vh;
+    margin-right: 10vh;
 }
 .left {
     margin-right: 5%;
