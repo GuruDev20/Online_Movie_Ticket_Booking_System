@@ -19,7 +19,7 @@ function Contact() {
             </div>
             <div className="contact-info-text">
               <h3>Email</h3>
-              <p>contact@example.com</p>
+              <p>guru01803@gmail.com</p>
             </div>
           </div>
           <div className="contact-info-field">
@@ -28,7 +28,7 @@ function Contact() {
             </div>
             <div className="contact-info-text">
               <h3>Phone</h3>
-              <p>(123) 456-7890</p>
+              <p>(+91)123-456-7890</p>
             </div>
           </div>
           <div className="contact-info-field">
