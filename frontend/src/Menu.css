@@ -1,8 +1,12 @@
 .App {
     display: flex;
 }
+.filedcontenthome{
+    background-color: white;
+    box-shadow: white;
+}
 nav {
-    background-image: url('pic1.avif');
+    background-color: rgb(6, 6, 63);
     color: white;
     padding: 10px;
     width: 16%;

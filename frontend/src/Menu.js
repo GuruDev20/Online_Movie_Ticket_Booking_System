@@ -38,6 +38,7 @@ function Menu(props) {
   ];
 
   return (
+    <div className='filedcontenthome'>
     <div className="App">
       <header>
         <nav>
@@ -61,6 +62,7 @@ function Menu(props) {
           </div>
         ))}
       </main>
+    </div>
     </div>
   );
 }

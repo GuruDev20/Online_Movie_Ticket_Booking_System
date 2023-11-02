@@ -16,42 +16,62 @@ function App() {
     setIsRegistering(!isRegistering);
   };
 
+  const isEmailValid = (value) => {
+    const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    return emailPattern.test(value);
+  };
+
+  const isPasswordValid = (value) => {
+    return value.length >= 8; 
+  };
+
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    const newValue = e.target.value;
+    setEmail(newValue);
   };
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+    const newValue = e.target.value;
+    setPassword(newValue);
   };
 
   const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+    const newValue = e.target.value;
+    setUsername(newValue);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isRegistering) {
-      console.log("Registering with Username:", username, "Email:", email, "Password:", password);
-      axios.post('http://localhost:3001/register', { email, password, username })
-        .then(result => {
-          console.log(result);
-          setRedirectToMenu(true);
-        })
-        .catch(err => console.log(err));
+      if (isEmailValid(email) && isPasswordValid(password)) {
+        console.log("Registering with Username:", username, "Email:", email, "Password:", password);
+        axios.post('http://localhost:3001/register', { email, password, username })
+          .then(result => {
+            console.log(result);
+            setRedirectToMenu(true);
+          })
+          .catch(err => console.log(err));
+      } else {
+        alert("Please enter a valid email and password.");
+      }
     } else {
-      console.log("Logging in with Email:", email, "Password:", password);
-      axios.post('http://localhost:3001/login', { email, password })
-        .then(result => {
-          console.log(result);
-          if (result.data === "Success") {
-            if (email === "admin2003@gmail.com" && password === "admin2003") {
-              setRedirectToAdmin(true);
-            } else {
-              setRedirectToMenu(true);
+      if (isEmailValid(email) && isPasswordValid(password)) {
+        console.log("Logging in with Email:", email, "Password:", password);
+        axios.post('http://localhost:3001/login', { email, password })
+          .then(result => {
+            console.log(result);
+            if (result.data === "Success") {
+              if (email === "admin2003@gmail.com" && password === "admin2003") {
+                setRedirectToAdmin(true);
+              } else {
+                setRedirectToMenu(true);
+              }
             }
-          }
-        })
-        .catch(err => console.log(err));
+          })
+          .catch(err => console.log(err));
+      } else {
+        alert("Please enter a valid email and password.");
+      }
     }
   };
   
