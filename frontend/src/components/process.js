@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import './process.css'
+import processcss from './process.module.css';
 import axios from "axios";
 
 function Process() {
@@ -28,7 +28,7 @@ function Process() {
   };
 
   return (
-    <div className="process">
+    <div className={processcss["process"]}>
       <h2>Processing:</h2>
       <p>Amount: {amount}</p>
       <p>Movie Name: {moviename}</p>
@@ -36,14 +36,14 @@ function Process() {
       <p>Quality: {quality}</p>
       <p>Screen: {screen}</p>
       <p>Language: {language}</p>
-      <div className="ticket-count">
-        <div className="ticket-buttons">
+      <div className={processcss["ticket-count"]}>
+        <div className={processcss["ticket-buttons"]}>
           <button onClick={handleMinusClick}>-</button>
           <p>{ticketCount}</p>
           <button onClick={handlePlusClick}>+</button>
         </div>
       </div>
-      <div className="save">
+      <div className={processcss["save"]}>
         <button onClick={handleSave}>Save</button>
       </div>
     </div>

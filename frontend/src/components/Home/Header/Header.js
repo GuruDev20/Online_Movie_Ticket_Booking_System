@@ -1,10 +1,10 @@
 import React from 'react';
-import './Header.css';
+import hcss from '../Header/Header.module.css';
 function Header() {
   return (
-    <div className='headeer'>
-      <h1 className='header-title'>Movies Mania...</h1>
-      <div className='divider'></div>
+    <div className={hcss['headeer']}>
+      <h1 className={hcss['header-title']}>Movies Mania...</h1>
+      <div className={hcss['divider']}></div>
     </div>
   );
 }

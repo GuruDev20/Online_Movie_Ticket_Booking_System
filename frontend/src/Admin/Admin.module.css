@@ -44,3 +44,20 @@ th {
     background-color: #4CAF50;
     color: white;
 }
+
+.uploadoption {
+    background-color: navy;
+    color: white;
+}
+
+.modal {
+    width: 94vh;
+    padding-left: 20px;
+}
+
+button {
+    width: 80px;
+    margin-right: 5px;
+    background-color: navy;
+    color: white;
+}

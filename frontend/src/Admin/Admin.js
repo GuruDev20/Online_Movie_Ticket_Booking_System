@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import './Admin.css';
+import admincss from './Admin.module.css'
 import axios from 'axios';
-
 
 export default function Admin() {
   const [activeScreen, setActiveScreen] = useState(null);
@@ -80,10 +79,26 @@ export default function Admin() {
       .then((response) => setImageData(response.data))
       .catch((err) => console.log(err));
   };
+  const [movies, setMovies] = useState([]); 
+  const fetchMovies = async () => {
+    axios.get('http://localhost:3001/getMovies')
+      .then((response) => setMovies(response.data))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    fetchMovies();
+  }, []);
+  const handleDelete=()=>{
+
+  };
+  const handleUpdate=()=>{
+    
+  }
   return (
-    <div className="admin-container">
-      <h1 className="admin-header">Movies Mania</h1>
-      <div className="adminnav">
+    <div className={admincss['admin-container']}>
+      <h1 admincss={'admin-header'}>Movies Mania</h1>
+      <div admincss={'adminnav'}>
         <button onClick={() => handleScreenClick('Screen 1')}>Screen 1</button>
         <button onClick={() => handleScreenClick('Screen 2')}>Screen 2</button>
         <button onClick={() => handleScreenClick('Screen 3')}>Screen 3</button>
@@ -94,7 +109,7 @@ export default function Admin() {
       <div className="updatemoviessection">
         <div className="upload-section">
           <h3>Upload Movie Image</h3>
-          <input
+          <input className='uploadoption'
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
@@ -114,9 +129,40 @@ export default function Admin() {
             <ImageCard key={index} imageUrl={image.url} />
           ))}
         </div>
-        <div className='available'>
-          
-        </div>
+      </div>
+      <div className="currentmovies">
+      <div className="currentmovies">
+        <h3>Available Movies</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Movie Name</th>
+              <th>Timing</th>
+              <th>Screen</th>
+              <th>Amount</th>
+              <th>Quality</th>
+              <th>Language</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {movies.map((movie, index) => (
+              <tr key={index}>
+                <td>{movie.movieName}</td>
+                <td>{movie.timing}</td>
+                <td>{movie.screen}</td>
+                <td>{movie.amount}</td>
+                <td>{movie.quality}</td>
+                <td>{movie.language}</td>
+                <td>
+                  <button onClick={() => handleUpdate(movie)}>Update</button>
+                  <button onClick={() => handleDelete(movie._id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       </div>
     </div>
   );

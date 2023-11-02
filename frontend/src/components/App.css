@@ -10,7 +10,7 @@
 
 .login-form,
 .register-form {
-    background-image: url('./pic1.avif');
+    background-image: url('../pic1.avif');
     width: 29%;
     background-color: lightgray;
     padding: 50px;

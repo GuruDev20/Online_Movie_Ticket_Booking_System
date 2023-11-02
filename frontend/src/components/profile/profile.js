@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./profile.css";
+import pcss from '../profile/profile.module.css';
 import pic1 from "./pic1.avif";
 import axios from "axios";
 
@@ -29,31 +29,31 @@ function Account(props) {
   }, [email]);
 
   return (
-    <div className="profile">
-      <div className="user">
-        <div className="user-image">
+    <div className={pcss["profile"]}>
+      <div className={pcss["user"]}>
+        <div className={pcss["user-image"]}>
           <img src={pic1} alt="User" />
         </div>
       </div>
-      <div className="divider-img"></div>
-      <div className="user-details">
+      <div className={pcss["divider-img"]}></div>
+      <div className={pcss["user-details"]}>
         {users.map((user, index) => (
-          <div key={index} className="field">
-            <label htmlFor="name" className="label">
+          <div key={index} className={pcss["field"]}>
+            <label htmlFor="name" className={pcss["label"]}>
               Name: {user.username}
             </label>
           </div>
         ))}
-        <div className="divider-field"></div>
-        <div className="field">
-          <label htmlFor="email" className="label">
+        <div className={pcss["divider-field"]}></div>
+        <div className={pcss["field"]}>
+          <label htmlFor="email" className={pcss["label"]}>
             Email: {email}
           </label>
         </div>
-        <div className="divider-field"></div>
-        <div className="ticket-details">
+        <div className={pcss["divider-field"]}></div>
+        <div className={pcss["ticket-details"]}>
           <h2>My Shows</h2>
-          <table className="ticket-table">
+          <table className={pcss["ticket-table"]}>
             <thead>
               <tr>
                 <th>Moviename</th>

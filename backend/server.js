@@ -120,7 +120,11 @@ app.get('/getImage', (req, res) => {
     .catch((err) => res.json(err));
 });
 
-
+app.get('/getMovies', (req, res) => {
+    MovieModel.find()
+    .then((movies) => res.json(movies))
+    .catch((err) => res.json(err));
+});
 app.listen(3001, () => {
   console.log('Server is running on port 3001');
 });

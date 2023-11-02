@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link, Element } from 'react-scroll';
-import './Menu.css';
-import Home from './components/Home/Home';
-import Upcomingmovies from './components/Upcmingmovies/Upcomingmovies';
-import Available from './components/Available/Available';
-import Contact from './components/Contact/Contact';
-import Account from './components/profile/profile';
+import menucss from '../components/Menu.module.css'
+import Home from './Home/Home';
+import Upcomingmovies from './Upcmingmovies/Upcomingmovies';
+import Available from './Available/Available';
+import Contact from './Contact/Contact';
+import Account from './profile/profile';
 
 function Menu(props) {
   const { email } = props;
@@ -38,8 +38,8 @@ function Menu(props) {
   ];
 
   return (
-    <div className='filedcontenthome'>
-    <div className="App">
+    <div className={menucss['filedcontenthome']}>
+    <div className={menucss["App"]}>
       <header>
         <nav>
           <ul>
@@ -55,8 +55,8 @@ function Menu(props) {
       </header>
       <main>
         {menuItems.map((menu) => (
-          <div className="content" key={menu.id}>
-            <Element name={menu.title} className="content-section">
+          <div className={menucss["content"]} key={menu.id}>
+            <Element name={menu.title} className={menucss["content-section"]}>
               {menu.component}
             </Element>
           </div>
