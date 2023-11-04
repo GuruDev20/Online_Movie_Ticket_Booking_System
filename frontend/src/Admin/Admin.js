@@ -17,12 +17,13 @@ export default function Admin() {
   });
 
   const fileInputRef = useRef(null);
+
   const fetchTicketDetails = async (screen) => {
     axios
       .get('http://localhost:3001/Tickets', {
         params: {
           screen: screen,
-        }
+        },
       })
       .then((response) => setTicketData(response.data))
       .catch((err) => console.log(err));
@@ -44,7 +45,7 @@ export default function Admin() {
   const handleSave = () => {
     const formDataToSend = new FormData();
     formDataToSend.append('image', uploadedImage);
-    formDataToSend.append('movieName', formData.movieName); 
+    formDataToSend.append('movieName', formData.movieName);
     formDataToSend.append('timing', formData.timing);
     formDataToSend.append('screen', formData.screen);
     formDataToSend.append('amount', formData.amount);
@@ -55,7 +56,7 @@ export default function Admin() {
       .then((res) => {
         console.log('Data saved successfully:', res.data);
         setFormData({
-          movieName: '', 
+          movieName: '',
           timing: '',
           screen: '',
           amount: '',
@@ -67,7 +68,7 @@ export default function Admin() {
       })
       .catch((err) => console.log('Error saving data:', err));
   };
-  
+
   const [imageData, setImageData] = useState([]);
   useEffect(() => {
     fetchImageData();
@@ -79,9 +80,11 @@ export default function Admin() {
       .then((response) => setImageData(response.data))
       .catch((err) => console.log(err));
   };
-  const [movies, setMovies] = useState([]); 
+
+  const [movies, setMovies] = useState([]);
   const fetchMovies = async () => {
-    axios.get('http://localhost:3001/getMovies')
+    axios
+      .get('http://localhost:3001/getMovies')
       .then((response) => setMovies(response.data))
       .catch((err) => console.log(err));
   };
@@ -89,6 +92,7 @@ export default function Admin() {
   useEffect(() => {
     fetchMovies();
   }, []);
+
   const handleDelete = (movieId) => {
     axios
       .delete(`http://localhost:3001/delete-movie/${movieId}`)
@@ -97,10 +101,49 @@ export default function Admin() {
       })
       .catch((err) => console.error('Error deleting movie:', err));
   };
+
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+
+  const handleUpdate = (movie) => {
+    setSelectedMovie(movie);
+    setIsUpdateModalOpen(true);
+    setFormData({
+      movieName: movie.movieName,
+      timing: movie.timing,
+      screen: movie.screen,
+      amount: movie.amount,
+      quality: movie.quality,
+      language: movie.language,
+    });
+  };
+
+  const handleUpdateSave = () => {
+    const updatedMovieData = { ...selectedMovie };
+    updatedMovieData.movieName = formData.movieName;
+    updatedMovieData.screen = formData.screen;
+    updatedMovieData.amount = formData.amount;
+    updatedMovieData.timing = formData.timing;
+    updatedMovieData.quality = formData.quality;
+    updatedMovieData.language = formData.language;
   
-  const handleUpdate=()=>{
-    
-  }
+    axios
+      .put(`http://localhost:3001/update-movie/${selectedMovie._id}`, updatedMovieData)
+      .then((response) => {
+        console.log('Movie updated successfully:', response.data);
+        setIsUpdateModalOpen(false);
+        // You may also want to update the local movies state with the updated movie data
+        const updatedMovies = movies.map((movie) =>
+          movie._id === selectedMovie._id ? { ...movie, ...updatedMovieData } : movie
+        );
+        setMovies(updatedMovies);
+      })
+      .catch((error) => {
+        console.error('Error updating movie:', error);
+      });
+  };
+  
+  
   return (
     <div className={styles['admin-container']}>
       <h1 className={styles['admin-header']}>Movies Mania</h1>
@@ -168,10 +211,98 @@ export default function Admin() {
           </tbody>
         </table>
       </div>
+      {isUpdateModalOpen && (
+        <UpdateMovieModal
+          movie={selectedMovie}
+          handleSave={handleUpdateSave}
+          onClose={() => setIsUpdateModalOpen(false)}
+        />
+      )}
       </div>
   );
 }
+function UpdateMovieModal({ movie, handleSave, onClose }) {
+  const screenOptions = ['Screen 1', 'Screen 2', 'Screen 3'];
+  const amountOptions = ['100', '120', '140', '160', '200'];
+  const timingOptions = ['Morning', 'Afternoon', 'Evening', 'Night'];
+  const qualityOptions = ['HD', '4K', '2D', '3D'];
+  const languageOptions = ['English', 'Spanish', 'Tamil', 'Hindi'];
 
+  const [updatedMovieData, setUpdatedMovieData] = useState({ ...movie });
+
+  const handleFieldChange = (fieldName, value) => {
+    setUpdatedMovieData({
+      ...updatedMovieData,
+      [fieldName]: value,
+    });
+  };
+
+  return (
+    <div className="modal">
+      <div className="modalContent">
+        <h3>Edit Movie Details</h3>
+        <input
+          type="text"
+          placeholder="Movie Name"
+          value={updatedMovieData.movieName}
+          onChange={(e) => handleFieldChange('movieName', e.target.value)}
+        />
+        <select
+          value={updatedMovieData.screen}
+          onChange={(e) => handleFieldChange('screen', e.target.value)}
+        >
+          {screenOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+        <select
+          value={updatedMovieData.amount}
+          onChange={(e) => handleFieldChange('amount', e.target.value)}
+        >
+          {amountOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+        <select
+          value={updatedMovieData.timing}
+          onChange={(e) => handleFieldChange('timing', e.target.value)}
+        >
+          {timingOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+        <select
+          value={updatedMovieData.quality}
+          onChange={(e) => handleFieldChange('quality', e.target.value)}
+        >
+          {qualityOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+        <select
+          value={updatedMovieData.language}
+          onChange={(e) => handleFieldChange('language', e.target.value)}
+        >
+          {languageOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+        <button onClick={handleSave}>Save</button>
+        <button onClick={onClose}>Cancel</button>
+      </div>
+    </div>
+  );
+}
 function MovieDetailsModal({ formData, setFormData, handleSave, onClose }) {
   const screenOptions = ['Screen 1', 'Screen 2', 'Screen 3'];
   const amountOptions = ['100', '120', '140', '160', '200'];

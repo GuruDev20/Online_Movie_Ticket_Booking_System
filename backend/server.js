@@ -137,6 +137,22 @@ router.delete('/delete-movie/:movieId', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+router.put('/update-movie/:movieId', async (req, res) => {
+  try {
+    const movieId = req.params.movieId;
+    const updatedMovieData = req.body;
+
+    const updatedMovie = await MovieModel.findByIdAndUpdate(movieId, updatedMovieData, { new: true });
+    if (updatedMovie) {
+      res.status(200).json(updatedMovie);
+    } else {
+      res.status(404).json({ error: 'Movie not found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 app.listen(3001, () => {
   console.log('Server is running on port 3001');

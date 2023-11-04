@@ -56,9 +56,11 @@ th {
 
 button {
     width: 80px;
-    margin-right: 5px;
+    margin-left: 5px;
+    padding-left: 20px;
     background-color: navy;
     color: white;
+    margin-bottom: 20px;
 }
 .dropdown {
     width: 100%;
