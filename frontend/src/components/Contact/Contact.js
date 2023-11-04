@@ -2,10 +2,6 @@ import React from 'react';
 import ccss from '../Contact/Contact.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone, faMapMarker } from '@fortawesome/free-solid-svg-icons';
-import kannum from '../../assets/kannum.jpg'
-import vikram from '../../assets/vikram.jpg'
-import leo from '../../assets/leo.jpg'
-import endgame from '../../assets/endgame.jpg'
 function Contact() {
   return (
     <div className={ccss["contact"]}>
@@ -41,20 +37,6 @@ function Contact() {
             </div>
           </div>
         </div>
-      </div>
-      <div className={ccss["card-img-field"]}>
-          <div className={ccss["card-img"]}>
-            <img src={kannum} alt="Movie 1" className={ccss["card-image" ]}/>
-          </div>
-          <div className={ccss["card-img"]}>
-            <img src={vikram} alt="Movie 2" className={ccss["card-image" ]}/>
-          </div>
-          <div className={ccss["card-img"]}>
-            <img src={leo} alt="Movie 1" className={ccss["card-image" ]}/>
-          </div>
-          <div className={ccss["card-img"]}>
-            <img src={endgame} alt="Movie 2" className={ccss["card-image" ]}/>
-          </div>
       </div>
     </div>
   );

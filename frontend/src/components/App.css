@@ -1,8 +1,5 @@
 .appdetails {
     background: #360033;
-    background: -webkit-linear-gradient(to right, #0b8793, #360033);
-    background: linear-gradient(to right, #0b8793, #360033);
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2), 0px 10px 20px rgba(0, 0, 0, 0.3), 0px 30px 60px 1px rgba(0, 0, 0, 0.5);
     display: flex;
     height: 98vh;
     user-select: none;

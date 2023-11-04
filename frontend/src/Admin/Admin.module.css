@@ -1,9 +1,8 @@
 .admin-container {
     text-align: center;
-    margin-left: 50vh;
     background-color: white;
+    width: 100%;
 }
-
 .admin-header {
     font-size: 36px;
 }
@@ -61,3 +60,12 @@ button {
     background-color: navy;
     color: white;
 }
+.dropdown {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }

@@ -3,7 +3,7 @@ import './App.css'
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Menu from './Menu';
 import axios from "axios";
-import Process from "./process";
+import Process from '../components/process'
 import Admin from '../Admin/Admin'
 function App() {
   const [isRegistering, setIsRegistering] = useState(false);

@@ -7,10 +7,12 @@ const TicketModel = require('./models/Ticket');
 const multer = require('multer');
 const app = express();
 const path=require('path');
+const router = express.Router();
 app.use(express.json());
 app.use(cors());
 app.use(express.static('public'))
-const MovieModel= require('./models/Movie')
+app.use("/", router);
+const MovieModel = require('./models/Movie');
 const paymentRoutes=require('./models/payment')
 dotenv.config();
 mongoose.connect('mongodb://127.0.0.1:27017/Online_Movie_Ticket_Booking_System');
@@ -125,6 +127,17 @@ app.get('/getMovies', (req, res) => {
     .then((movies) => res.json(movies))
     .catch((err) => res.json(err));
 });
+router.delete('/delete-movie/:movieId', async (req, res) => {
+  try {
+    const movieId = req.params.movieId;
+    await MovieModel.findByIdAndRemove(movieId);
+    res.status(200).json({ message: 'Movie deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 app.listen(3001, () => {
   console.log('Server is running on port 3001');
 });

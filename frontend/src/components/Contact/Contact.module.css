@@ -59,12 +59,3 @@
     margin: 0;
     font-family: cursive;
 }
-.card-img-field{
-    display:flex;
-    flex-direction:row;
-    padding: 10px;
-}
-.card-img{
-    padding: 10px;
-    width: 100vh;
-}
