@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import styles from '../Admin/Admin.module.css'
+import styles from './Admin.module.css'; 
 import axios from 'axios';
 
 export default function Admin() {
@@ -126,24 +126,20 @@ export default function Admin() {
     updatedMovieData.timing = formData.timing;
     updatedMovieData.quality = formData.quality;
     updatedMovieData.language = formData.language;
-  
+
     axios
       .put(`http://localhost:3001/update-movie/${selectedMovie._id}`, updatedMovieData)
       .then((response) => {
         console.log('Movie updated successfully:', response.data);
+        // After updating, you may want to refresh the movie list
+        fetchMovies();
         setIsUpdateModalOpen(false);
-        // You may also want to update the local movies state with the updated movie data
-        const updatedMovies = movies.map((movie) =>
-          movie._id === selectedMovie._id ? { ...movie, ...updatedMovieData } : movie
-        );
-        setMovies(updatedMovies);
       })
       .catch((error) => {
         console.error('Error updating movie:', error);
       });
   };
-  
-  
+
   return (
     <div className={styles['admin-container']}>
       <h1 className={styles['admin-header']}>Movies Mania</h1>
@@ -152,13 +148,12 @@ export default function Admin() {
         <button onClick={() => handleScreenClick('Screen 2')}>Screen 2</button>
         <button onClick={() => handleScreenClick('Screen 3')}>Screen 3</button>
       </div>
-      {activeScreen && (
-        <TableComponent screen={activeScreen} ticketData={ticketData} />
-      )}
+      {activeScreen && <TableComponent screen={activeScreen} ticketData={ticketData} />}
       <div className="updatemoviessection">
         <div className="upload-section">
           <h3>Available Movies</h3>
-          <input className='uploadoption'
+          <input
+            className='uploadoption'
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
@@ -179,7 +174,7 @@ export default function Admin() {
           ))}
         </div>
       </div>
-      <br/>
+      <br />
       <div className="currentmovies">
         <table>
           <thead>
@@ -214,95 +209,16 @@ export default function Admin() {
       {isUpdateModalOpen && (
         <UpdateMovieModal
           movie={selectedMovie}
+          formData={formData}
+          setFormData={setFormData}
           handleSave={handleUpdateSave}
           onClose={() => setIsUpdateModalOpen(false)}
         />
       )}
-      </div>
-  );
-}
-function UpdateMovieModal({ movie, handleSave, onClose }) {
-  const screenOptions = ['Screen 1', 'Screen 2', 'Screen 3'];
-  const amountOptions = ['100', '120', '140', '160', '200'];
-  const timingOptions = ['Morning', 'Afternoon', 'Evening', 'Night'];
-  const qualityOptions = ['HD', '4K', '2D', '3D'];
-  const languageOptions = ['English', 'Spanish', 'Tamil', 'Hindi'];
-
-  const [updatedMovieData, setUpdatedMovieData] = useState({ ...movie });
-
-  const handleFieldChange = (fieldName, value) => {
-    setUpdatedMovieData({
-      ...updatedMovieData,
-      [fieldName]: value,
-    });
-  };
-
-  return (
-    <div className="modal">
-      <div className="modalContent">
-        <h3>Edit Movie Details</h3>
-        <input
-          type="text"
-          placeholder="Movie Name"
-          value={updatedMovieData.movieName}
-          onChange={(e) => handleFieldChange('movieName', e.target.value)}
-        />
-        <select
-          value={updatedMovieData.screen}
-          onChange={(e) => handleFieldChange('screen', e.target.value)}
-        >
-          {screenOptions.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-        <select
-          value={updatedMovieData.amount}
-          onChange={(e) => handleFieldChange('amount', e.target.value)}
-        >
-          {amountOptions.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-        <select
-          value={updatedMovieData.timing}
-          onChange={(e) => handleFieldChange('timing', e.target.value)}
-        >
-          {timingOptions.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-        <select
-          value={updatedMovieData.quality}
-          onChange={(e) => handleFieldChange('quality', e.target.value)}
-        >
-          {qualityOptions.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-        <select
-          value={updatedMovieData.language}
-          onChange={(e) => handleFieldChange('language', e.target.value)}
-        >
-          {languageOptions.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-        <button onClick={handleSave}>Save</button>
-        <button onClick={onClose}>Cancel</button>
-      </div>
     </div>
   );
 }
+
 function MovieDetailsModal({ formData, setFormData, handleSave, onClose }) {
   const screenOptions = ['Screen 1', 'Screen 2', 'Screen 3'];
   const amountOptions = ['100', '120', '140', '160', '200'];
@@ -332,7 +248,7 @@ function MovieDetailsModal({ formData, setFormData, handleSave, onClose }) {
           ))}
         </select>
         <select
-          className={styles.dropdown} 
+          className={styles.dropdown}
           value={formData.amount}
           onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
         >
@@ -343,7 +259,7 @@ function MovieDetailsModal({ formData, setFormData, handleSave, onClose }) {
           ))}
         </select>
         <select
-          className={styles.dropdown} 
+          className={styles.dropdown}
           value={formData.timing}
           onChange={(e) => setFormData({ ...formData, timing: e.target.value })}
         >
@@ -354,7 +270,7 @@ function MovieDetailsModal({ formData, setFormData, handleSave, onClose }) {
           ))}
         </select>
         <select
-          className={styles.dropdown} 
+          className={styles.dropdown}
           value={formData.quality}
           onChange={(e) => setFormData({ ...formData, quality: e.target.value })}
         >
@@ -382,7 +298,84 @@ function MovieDetailsModal({ formData, setFormData, handleSave, onClose }) {
   );
 }
 
+function UpdateMovieModal({ movie, formData, setFormData, handleSave, onClose }) {
+  const screenOptions = ['Screen 1', 'Screen 2', 'Screen 3'];
+  const amountOptions = ['100', '120', '140', '160', '200'];
+  const timingOptions = ['Morning', 'Afternoon', 'Evening', 'Night'];
+  const qualityOptions = ['HD', '4K', '2D', '3D'];
+  const languageOptions = ['English', 'Spanish', 'Tamil', 'Hindi'];
 
+  return (
+    <div className={styles.modal}>
+      <div className={styles.modalContent}>
+        <h3>Edit Movie Details</h3>
+        <input
+          type="text"
+          placeholder="Movie Name"
+          value={formData.movieName}
+          onChange={(e) => setFormData({ ...formData, movieName: e.target.value })}
+        />
+        <select
+          className={styles.dropdown}
+          value={formData.screen}
+          onChange={(e) => setFormData({ ...formData, screen: e.target.value })}
+        >
+          {screenOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+        <select
+          className={styles.dropdown}
+          value={formData.amount}
+          onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
+        >
+          {amountOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+        <select
+          className={styles.dropdown}
+          value={formData.timing}
+          onChange={(e) => setFormData({ ...formData, timing: e.target.value })}
+        >
+          {timingOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+        <select
+          className={styles.dropdown}
+          value={formData.quality}
+          onChange={(e) => setFormData({ ...formData, quality: e.target.value })}
+        >
+          {qualityOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+        <select
+          className={styles.dropdown}
+          value={formData.language}
+          onChange={(e) => setFormData({ ...formData, language: e.target.value })}
+        >
+          {languageOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+        <button onClick={handleSave}>Save</button>
+        <button onClick={onClose}>Cancel</button>
+      </div>
+    </div>
+  );
+}
 
 function TableComponent({ screen, ticketData }) {
   return (
@@ -414,6 +407,7 @@ function TableComponent({ screen, ticketData }) {
     </div>
   );
 }
+
 function ImageCard({ imageUrl }) {
   return (
     <div className="image-card">

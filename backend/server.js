@@ -141,8 +141,13 @@ router.put('/update-movie/:movieId', async (req, res) => {
   try {
     const movieId = req.params.movieId;
     const updatedMovieData = req.body;
+    console.log(updatedMovieData);
+    const updatedMovie = await MovieModel.findByIdAndUpdate(
+      movieId,
+      updatedMovieData,
+      { new: true }
+    );
 
-    const updatedMovie = await MovieModel.findByIdAndUpdate(movieId, updatedMovieData, { new: true });
     if (updatedMovie) {
       res.status(200).json(updatedMovie);
     } else {
@@ -153,6 +158,7 @@ router.put('/update-movie/:movieId', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 
 app.listen(3001, () => {
   console.log('Server is running on port 3001');
