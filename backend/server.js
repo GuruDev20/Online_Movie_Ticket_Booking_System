@@ -141,7 +141,7 @@ router.put('/update-movie/:movieId', async (req, res) => {
   try {
     const movieId = req.params.movieId;
     const updatedMovieData = req.body;
-    console.log(updatedMovieData);
+    console.log(updatedMovieData  );
     const updatedMovie = await MovieModel.findByIdAndUpdate(
       movieId,
       updatedMovieData,
